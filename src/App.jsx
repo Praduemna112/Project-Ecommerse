@@ -1,41 +1,16 @@
-import React, { useState } from 'react'
-import Navbar from './components/Navbar'
-import SearchResults from './components/SearchResults'
-import './App.css'
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import Layout from "./components/Layout";
+import ImageSlider from "./components/ImageSlider";
 
 function App() {
-    const [searchQuery, setSearchQuery] = useState('')
-    const [showSearchResults, setShowSearchResults] = useState(false)
-
-    const handleSearch = (query) => {
-        setSearchQuery(query)
-        setShowSearchResults(true)
-    }
-
-    const handleBackToHome = () => {
-        setShowSearchResults(false)
-        setSearchQuery('')
-    }
-
-    return (
-        <div className="app">
-            {!showSearchResults && <Navbar onSearch={handleSearch} />}
-
-            {showSearchResults ? (
-                <SearchResults
-                    searchQuery={searchQuery}
-                    onBack={handleBackToHome}
-                />
-            ) : (
-                <main className="main-content">
-                    <div className="container">
-                        <h1>Welcome to Our Store</h1>
-                        <p>Your homepage content goes here</p>
-                    </div>
-                </main>
-            )}
-        </div>
-    )
+  return (
+    <Layout>
+      <Routes>
+        <Route path="/" element={<ImageSlider/>} />
+      </Routes>
+    </Layout>
+  );
 }
 
-export default App
+export default App;
